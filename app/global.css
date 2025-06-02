@@ -1,0 +1,184 @@
+/* Reset and basics */
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background-image: url("assets/backgound.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main container */
+main {
+  width: 80vw;
+  max-width: 800px;
+  height: 90vh;
+  background: linear-gradient(to bottom, #f8f8f8, #cfcfcf);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow: hidden; /* Keep scroll confined */
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.starter-text {
+  text-align: center;
+}
+.prompt-suggestion-button {
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 15px;
+  width: 100%; /* fills grid column */
+}
+
+/* Chat messages container: flex-grow to fill, scrollable */
+.chat-section {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #411b8d #e0e0e0;
+}
+
+/* Custom scrollbar for WebKit browsers */
+.chat-section::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-section::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+.chat-section::-webkit-scrollbar-thumb {
+  background-color: #411b8d;
+  border-radius: 4px;
+}
+
+/* Chat bubbles styling */
+.bubble {
+  margin: 0 20px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  white-space: pre-wrap; /* Keep line breaks */
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+/* User bubble aligned right */
+.bubble.user {
+  background-color: #e1f4ff;
+  align-self: flex-end;
+  border-radius: 20px 20px 0 20px;
+}
+
+/* Assistant bubble aligned left */
+.bubble.assistant {
+  background-color: #dce7ff;
+  align-self: flex-start;
+  border-radius: 20px 20px 20px 0;
+}
+
+/* Chat form at bottom */
+form {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #aaa;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Input box */
+input.question-box {
+  flex: 1 1 auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline-offset: 2px;
+  outline-color: #411b8d;
+}
+
+/* Submit button */
+input[type="submit"] {
+  background-color: #411b8d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #5933b8;
+}
+
+/* Loader animation */
+.loader {
+  margin: 10px auto;
+  width: 60px;
+  aspect-ratio: 4;
+  background: no-repeat
+      radial-gradient(circle closest-side, #383838 90%, transparent) 0 50%,
+    no-repeat radial-gradient(circle closest-side, #383838 90%, transparent) 50%
+      50%,
+    no-repeat radial-gradient(circle closest-side, #383838 90%, transparent)
+      100% 50%;
+  background-size: calc(100% / 3) 100%;
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  33% {
+    background-size: calc(100% / 3) 0, calc(100% / 3) 100%, calc(100% / 3) 100%;
+  }
+  50% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 0, calc(100% / 3) 100%;
+  }
+  66% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 100%, calc(100% / 3) 0;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  main {
+    width: 95vw;
+    height: 90vh;
+    padding: 10px;
+  }
+
+  .bubble {
+    font-size: 14px;
+    max-width: 95%;
+  }
+
+  input.question-box,
+  input[type="submit"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
